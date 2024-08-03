@@ -1,6 +1,10 @@
 raw_data/
 .python-version
 .DS_Store
+*.png
+*.jpg
+*.jpeg
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
