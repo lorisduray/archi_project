@@ -171,3 +171,4 @@ cython_debug/
 
 # model
 backend/model/
+notebook/yolov8.ipynb
