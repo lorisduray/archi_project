@@ -170,5 +170,8 @@ cython_debug/
 #.idea/
 
 # model
-backend/model/
+backend/model/resnet50-architecture-classifier.pth
 notebook/yolov8.ipynb
+backend/Model/resnet50-architecture-classifier.pth
+model/
+Model/
