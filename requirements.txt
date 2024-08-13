@@ -104,3 +104,18 @@ webencodings==0.5.1
 websocket-client==1.8.0
 widgetsnbextension==4.0.11
 opencv-python==4.10.0.84
+
+# api
+fastapi
+uvicorn
+python-multipart
+# img
+opencv-python
+
+httpx
+pytest-asyncio
+
+torch
+torchvision
+pillow
+fastcore
