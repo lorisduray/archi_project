@@ -175,3 +175,5 @@ notebook/yolov8.ipynb
 backend/Model/resnet50-architecture-classifier.pth
 model/
 Model/
+
+*.pth
