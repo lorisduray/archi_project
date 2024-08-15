@@ -4,9 +4,10 @@ from PIL import Image
 import cv2
 from torchvision import models, transforms
 from fastai.vision.all import load_learner, PILImage
+import os
 
 # Define the path to your saved model
-MODEL_PATH = '/Users/lorisduray/code/lorisduray/architectural_styles/archi_project/model/resnet50_finetune_architecture.pkl'
+MODEL_PATH = os.path.join(os.path.dirname(__file__), '../../model/resnet50_finetune_architecture.pkl')
 learn = load_learner(MODEL_PATH)
 
 
