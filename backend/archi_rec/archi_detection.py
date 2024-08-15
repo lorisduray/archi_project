@@ -5,7 +5,7 @@ import cv2
 from torchvision import models, transforms
 
 # Define the path to your saved model
-MODEL_PATH = '/Users/lorisduray/code/lorisduray/architectural_styles/archi_project/backend/new_model/resnet50-architecture-classifier.pth'
+MODEL_PATH = '/Users/lorisduray/code/lorisduray/architectural_styles/archi_project/backend/new_model/my_model.pkl'
 model = models.resnet50(pretrained=True)  # Adjust num_classes as needed
 model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
 model.eval()
