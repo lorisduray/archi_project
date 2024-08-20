@@ -1,48 +1,56 @@
 import streamlit as st
+from PIL import Image
+import requests
+import io
+import openai
 
-'''
-# TaxiFareModel front
-'''
+openai.api_key ='key_here'
 
-st.markdown('''
-Remember that there are several ways to output content into your web page...
+# st.set_option('deprecation.showfileUploaderEncoding', False)
+st.title("Architectural Styles Recognition App")
+st.write("Upload or capture an image of an architectural style, and the app will identify the style and provide detailed information.")
 
-Either as with the title by just creating a string (or an f-string). Or as with this paragraph using the `st.` functions
-''')
+# Image upload or capture section
+st.subheader("Step 1: Upload or Capture an Image")
 
-'''
-## Here we would like to add some controllers in order to ask the user to select the parameters of the ride
+# Upload image
+file_up = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-1. Let's ask for:
-- date and time
-- pickup longitude
-- pickup latitude
-- dropoff longitude
-- dropoff latitude
-- passenger count
-'''
+# Capture image
+capture = st.camera_input("Or, take a photo")
 
-'''
-## Once we have these, let's call our API in order to retrieve a prediction
+if file_up is not None or capture is not None:
+    # Use the uploaded image or captured image
+    image = Image.open(file_up) if file_up else Image.open(capture)
+    st.image(image, caption='Uploaded Image.', use_column_width=True)
+    st.write("Just a second...")
 
-See ? No need to load a `model.joblib` file in this app, we do not even need to know anything about Data Science in order to retrieve a prediction...
+    # Convert the image to bytes
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='JPEG')
+    img_byte_arr = img_byte_arr.getvalue()
 
-🤔 How could we call our API ? Off course... The `requests` package 💡
-'''
+    # Send the image to the API
+    api_url = "http://localhost:8000/upload_image"  # Replace with google cloud?
+    response = requests.post(api_url, files={"file": img_byte_arr})
 
-url = 'https://taxifare.lewagon.ai/predict'
+    if response.status_code == 200:
+        labels = response.json()
 
-if url == 'https://taxifare.lewagon.ai/predict':
+        # Display the recognized style and probability
+        st.subheader("Step 2: Recognized Architectural Style")
+        st.write(f"**Style Recognized:** {labels['architectural_style']}")
+        st.write(f"**Probability:** {labels['probability']*100:.2f}%")
 
-    st.markdown('Maybe you want to use your own API for the prediction, not the one provided by Le Wagon...')
+        # # Fetch more information using OpenAI GPT
+        # st.subheader("Step 3: Style Information")
+        # style_info = openai.Completion.create(
+        #     model="text-davinci-003",
+        #     prompt=f"Provide detailed information about the architectural style {labels['architectural_style']}.",
+        #     max_tokens=150
+        # )
 
-'''
+        # st.write(style_info.choices[0].text.strip())
 
-2. Let's build a dictionary containing the parameters for our API...
-
-3. Let's call our API using the `requests` package...
-
-4. Let's retrieve the prediction from the **JSON** returned by the API...
-
-## Finally, we can display the prediction to the user
-'''
+    else:
+        st.error("There was an error processing the image. Please try again.")
