@@ -1,6 +1,3 @@
-# archi_project
-architectural-styles-classification
-
 # **ArchiVoyage - Architectural Style Detection**
 
 ![ArchiVoyage Logo](Logo/ArchiVoyage.png)
