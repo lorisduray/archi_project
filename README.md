@@ -4,7 +4,7 @@
 
 ## **Overview**
 
-**ArchiVoyage** is a Deep learning application that detects architectural styles from images of buildings. Leveraging a fine-tuned ResNet50 model, it identifies architectural styles and provides detailed information about the recognized style. Additionally, users can explore nearby architectural landmarks based on their location. The project is built with a deep learning model, FastAPI for backend services, and Streamlit for the frontend.
+**ArchiVoyage** is a Deep learning application that detects architectural styles from images of buildings. Using a fine-tuned ResNet50 model, it identifies architectural styles and provides detailed information about the recognized style. Additionally, users can explore nearby architectural landmarks based on their location. The project is built with a deep learning model, FastAPI for backend services, and Streamlit for the frontend.
 
 ## **Features**
 
