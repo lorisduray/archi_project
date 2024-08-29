@@ -27,27 +27,13 @@
 ├── model
 │   └── resnet50_finetune_architecture.pkl  # Trained model
 ├── notebook
-│   └── Streamlit-app.ipynb  # Jupyter notebook for model development
+│   └── archi_style_CNN.ipynb  # Jupyter notebook for model development
 ├── raw_data
 │   └── architectural-styles-dataset  # Dataset used for training
 ├── Dockerfile  # Docker configuration
 ├── requirements.txt  # Python dependencies
 └── README.md  # Project documentation
 ```
-
-## Usage
-
-### Upload Image
-Upload an image of a building via the frontend.
-
-### Style Detection
-The app will predict the architectural style and display the result along with the confidence score.
-
-### Style Information
-The app provides additional details about the detected architectural style using GPT-3.5.
-
-### Discover Nearby Attractions
-Enter your location, and the app will suggest nearby architectural landmarks to explore.
 
 ## Model Details
 The architectural style detection model is based on ResNet50, a deep convolutional neural network. The model has been fine-tuned on a custom dataset containing various architectural styles.
@@ -79,7 +65,7 @@ Based on user location input, nearby architectural landmarks are suggested.
 ## Acknowledgements
 
 - The ResNet50 model is pre-trained on ImageNet.
-- The architectural dataset for training was curated from various sources.
+- The architectural dataset used for training is a Kaggle dataset created by Marian Dumitru Danci (@dumitrux).
 
 ## Contact
 
