@@ -24,7 +24,7 @@ st.image(logo)
 
 st.write("Upload an image of an architectural style, and the app will identify the style and provide detailed information.")
 
-st.subheader("Step 1: Upload an Image")
+st.subheader("Upload an Image")
 
 file_up = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
@@ -46,11 +46,11 @@ if file_up:
     if response.status_code == 200:
         labels = response.json()
 
-        st.subheader("Step 2: Recognized Architectural Style")
+        st.subheader("Architectural Style")
         st.write(f"**Style Recognized:** {labels['architectural_style']}")
-        st.write(f"**Probability:** {labels['probability']*100:.2f}%")
+        # st.write(f"**Probability:** {labels['probability']*100:.2f}%")
 
-        st.subheader("Step 3: Style Information")
+        # st.subheader("Step 3: Style Information")
         with st.spinner("Generating detailed information..."):
             try:
                 # Create a completion request using the OpenAI client
@@ -58,11 +58,10 @@ if file_up:
                     messages=[
                         {
                             "role": "user",
-                            "content": f"Provide detailed information about the architectural style {labels['architectural_style']}.",
+                            "content": f"Provide a detailed description of the architectural style known as {labels['architectural_style']}. Include key characteristics of this style, its historical significance, and mention a few famous buildings that exemplify this style. Use around 300 tokens.",
                         }
                     ],
                     model="gpt-3.5-turbo",
-                    max_tokens=200
                 )
 
                 # Access the generated text
@@ -80,7 +79,7 @@ if file_up:
 
 # Step 4: Discover Nearby Attractions (Shown only after successful prediction)
 if show_step_4:
-    st.subheader("Step 4: Discover Nearby Attractions")
+    st.subheader("Discover Nearby Attractions")
     st.write("Enter your location to find more buildings and attractions of architectural interest near you.")
 
     location = st.text_input("Your Location")
@@ -90,7 +89,7 @@ if show_step_4:
             try:
                 # Create a completion request using the OpenAI client
                 prompt = (f"Based on the location '{location}', suggest some notable buildings and architectural attractions to visit. "
-                          "Include any interesting landmarks or places of architectural significance.")
+                          "Include any interesting landmarks or places of architectural significance. Use aroud 300 tokens")
                 chat_completion = client.chat.completions.create(
                     messages=[
                         {
@@ -99,7 +98,6 @@ if show_step_4:
                         }
                     ],
                     model="gpt-3.5-turbo",
-                    max_tokens=200
                 )
 
                 # Access and display the generated text
